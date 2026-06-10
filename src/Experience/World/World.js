@@ -1,9 +1,11 @@
+import { Plane } from 'three'
 import Experience from '../Experience.js'
 import Environment from './Environment.js'
 import Fox from './Fox.js'
 import Grass from './Grass.js'
 import Sheep from './Sheep.js'
 import Wind from './Wind.js'
+import Planee from './Planee.js'
 
 export default class World
 {
@@ -21,6 +23,7 @@ export default class World
             this.fox = new Fox()
             this.sheep = new Sheep()
             this.grass = new Grass(this.wind)
+            // this.plane = new Planee()
             this.environment = new Environment()
         })
     }

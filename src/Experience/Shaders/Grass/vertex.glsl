@@ -7,6 +7,8 @@ uniform float uSize;
 uniform vec3 uBaseColor;
 uniform vec3 uTipColor;
 
+uniform sampler2D uTerrain;
+
 
 varying vec3 vColor;
 
@@ -79,6 +81,10 @@ void main()
     // billboarding
     vec3 bladeCenterLocal = position;
     vec4 bladeCenterWorld = modelMatrix * vec4(bladeCenterLocal, 1.0);
+    
+    // grass area
+    vec2 grassUv = (bladeCenterWorld.xz / uSize) + 0.5;
+    float grassArea = texture(uTerrain, grassUv).g;
 
     // compute angle in world space
     float angleToCamera = atan(bladeCenterWorld.x - cameraPosition.x, bladeCenterWorld.z - cameraPosition.z
@@ -87,9 +93,9 @@ void main()
     // height
     float heightVariation = texture(uPerlinTexture, bladeCenterWorld.xz * 0.0321).r + 0.5;
     float heightRandomFactor = uBladeHeightRandomness * randomHeight + (1.0 - uBladeHeightRandomness);
-    float height = uBladeHeight * heightRandomFactor * heightVariation;
+    float height = uBladeHeight * heightRandomFactor * heightVariation * grassArea;
 
-    vec3 offset = vec3(shape.x * uBladeWidth, 0.0, -shape.y * height);
+    vec3 offset = vec3(shape.x * uBladeWidth * grassArea, 0.0, -shape.y * height);
 
     // rotate offset around blade center
     offset.xy = getRotatePivot2d(offset.xy, angleToCamera, vec2(0.0));

@@ -11,6 +11,7 @@ export default class Grass
         this.experience = new Experience()
         this.scene = this.experience.scene
         this.resources = this.experience.resources
+        this.terrain = this.resources.items.terrainTexture
         this.wind = wind
         this.debug = this.experience.debug
 
@@ -133,6 +134,7 @@ export default class Grass
             ...this.wind.uniforms,
             uBaseColor: new THREE.Uniform(new THREE.Color(this.parameters.baseColor)),
             uTipColor: new THREE.Uniform(new THREE.Color(this.parameters.tipColor)),
+            uTerrain: new THREE.Uniform(this.terrain)
         }
 
         this.customMaterial = new Material(Vertex, Fragment, this.uniforms)

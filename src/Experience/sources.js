@@ -27,4 +27,9 @@ export default [
         type: 'texture',
         path: 'textures/noise/perlin.png'
     },
+    {
+        name: 'terrainTexture',
+        type: 'texture',
+        path: 'textures/palette/terrain.png'
+    },
 ]
