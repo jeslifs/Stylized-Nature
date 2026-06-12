@@ -57,7 +57,7 @@ void main()
     float waterLayer1 = texture(uPerlinTexture, waterUv).r * 25.5 * windDirection.x;
 
     // water layer 2
-    float waterLayer2 = texture(uPerlinTexture, waterUv).g * windDirection.y;
+    float waterLayer2 = texture(uPerlinTexture, waterUv).g * 2.0 * windDirection.y;
 
 
 
