@@ -22,7 +22,7 @@ export default class Sky
         // setup
         this.parameters = {
             'topColor': '#b5eaf7', //00bdd6
-            'bottomColor':'#0c0034',
+            'bottomColor':'#4195b9', // 0b5daf 4195b9
             'offset': -5000,
             'multiplier': 10000,
             'minClamp': -1,
@@ -61,8 +61,18 @@ export default class Sky
         this.scene.add(this.sky)
         if(this.debug.active)
         {
-            this.debugFolder.addColor(this.parameters, 'topColor').onChange(() => { this.material.uniforms.topColor.value.set(this.parameters.topColor)})
-            this.debugFolder.addColor(this.parameters, 'bottomColor').onChange(() => { this.material.uniforms.bottomColor.value.set(this.parameters.bottomColor)})
+            this.debugFolder
+                .addColor(this.parameters, 'topColor')
+                .onChange(() => { 
+                    this.material.uniforms.topColor.value.set(
+                        this.parameters.topColor   
+                    )})
+            this.debugFolder
+                .addColor(this.parameters, 'bottomColor')
+                .onChange(() => { 
+                    this.material.uniforms.bottomColor.value.set(
+                        this.parameters.bottomColor
+                    )})
             this.debugFolder
                 .add(this.material.uniforms.offset, 'value')
                 .min(-5000)

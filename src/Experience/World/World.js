@@ -6,6 +6,7 @@ import Sheep from './Sheep.js'
 import Wind from './Wind.js'
 import Water from './Water.js'
 import Sky from './Sky.js'
+import Fog from './Fog.js'
 
 export default class World
 {
@@ -25,6 +26,7 @@ export default class World
             this.sheep = new Sheep()
             this.grass = new Grass(this.wind)
             this.water = new Water()
+            this.fog = new Fog()
             this.environment = new Environment()
         })
     }
