@@ -5,6 +5,7 @@ import Grass from './Grass.js'
 import Sheep from './Sheep.js'
 import Wind from './Wind.js'
 import Water from './Water.js'
+import Sky from './Sky.js'
 
 export default class World
 {
@@ -18,6 +19,7 @@ export default class World
         this.resources.on('ready', () =>
         {
             // Setup
+            this.sky = new Sky()
             this.wind = new Wind()
             this.fox = new Fox()
             this.sheep = new Sheep()
