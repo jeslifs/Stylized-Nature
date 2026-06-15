@@ -7,6 +7,7 @@ import Wind from './Wind.js'
 import Water from './Water.js'
 import Sky from './Sky.js'
 import Fog from './Fog.js'
+import Cloud from './Cloud.js'
 
 export default class World
 {
@@ -27,6 +28,7 @@ export default class World
             this.grass = new Grass(this.wind)
             this.water = new Water()
             this.fog = new Fog()
+            this.cloud = new Cloud()
             this.environment = new Environment()
         })
     }
@@ -41,5 +43,7 @@ export default class World
             this.wind.update()
         if(this.water)
             this.water.update()
+        if(this.cloud)
+            this.cloud.update()
     }
 }
