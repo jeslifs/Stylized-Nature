@@ -32,10 +32,20 @@ export default class Environment
     {
         this.sunLight = new THREE.DirectionalLight(this.parameters.directionalLightColor, 1.149)
         this.sunLight.castShadow = true
-        this.sunLight.shadow.camera.far = 15
+        // this.sunLight.shadow.camera.far = 15
         this.sunLight.shadow.mapSize.set(1024, 1024)
         this.sunLight.shadow.normalBias = 0.05
-        this.sunLight.position.set(3.5, 2, - 1.25)
+        // this.sunLight.position.set(3.5, 20, - 1.25)
+        this.sunLight.position.set(0, 13.4, 0)
+        
+        // shadow camera
+        this.sunLight.shadow.camera.near = 0.5
+        this.sunLight.shadow.camera.far = 65
+        this.sunLight.shadow.camera.left = -40
+        this.sunLight.shadow.camera.right = 40
+        this.sunLight.shadow.camera.top = 40
+        this.sunLight.shadow.camera.bottom = -40
+        
         this.scene.add(this.sunLight)
 
         // this.scene.add(new THREE.CameraHelper(this.sunLight.shadow.camera))
@@ -53,22 +63,22 @@ export default class Environment
             this.directionalLightFolder
                 .add(this.sunLight.position, 'x')
                 .name('sunLightX')
-                .min(- 5)
-                .max(5)
+                .min(- 30)
+                .max(30)
                 .step(0.001)
             
             this.directionalLightFolder
                 .add(this.sunLight.position, 'y')
                 .name('sunLightY')
-                .min(- 5)
-                .max(5)
+                .min(- 30)
+                .max(30)
                 .step(0.001)
             
             this.directionalLightFolder
                 .add(this.sunLight.position, 'z')
                 .name('sunLightZ')
-                .min(- 5)
-                .max(5)
+                .min(- 30)
+                .max(30)
                 .step(0.001)
 
             this.directionalLightFolder

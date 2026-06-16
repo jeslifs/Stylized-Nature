@@ -24,5 +24,5 @@ void main()
 
     // gl_Position = projectionPosition;
 
-    // vNoise = noise;
+    vNoise = noise;
 }
