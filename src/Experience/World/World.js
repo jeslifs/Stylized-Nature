@@ -1,3 +1,4 @@
+import * as THREE from 'three'
 import Experience from '../Experience.js'
 import Environment from './Environment.js'
 import Fox from './Fox.js'
@@ -24,7 +25,18 @@ export default class World
             this.sky = new Sky()
             this.wind = new Wind()
             this.fox = new Fox()
-            this.sheep = new Sheep()
+            this.flock = []
+
+            for(let i = 0; i < 5; i++)
+            {
+                const randomX = (Math.random() - 0.5) * 20
+                const randomZ = (Math.random() - 0.5) * 20
+                const randomPosition = new THREE.Vector3(randomX, 0, randomZ)
+            
+                const sheep = new Sheep(i + 1, randomPosition)
+                this.flock.push(sheep)
+            }
+            // this.sheep = new Sheep(5)
             this.grass = new Grass(this.wind)
             this.water = new Water()
             this.fog = new Fog()
@@ -45,5 +57,15 @@ export default class World
             this.water.update()
         if(this.cloud)
             this.cloud.update()
+        // if(this.sheep)
+        //     this.sheep.update()
+        if(this.flock)
+        {
+            for(const sheep of this.flock)
+            {
+                sheep.update()
+            }
+        }
+
     }
 }

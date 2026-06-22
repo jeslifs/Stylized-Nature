@@ -1,5 +1,6 @@
 import * as THREE from 'three'
 import Experience from './Experience.js'
+import { CSS2DRenderer } from 'three/examples/jsm/Addons.js'
 
 export default class Renderer
 {
@@ -12,6 +13,7 @@ export default class Renderer
         this.camera = this.experience.camera
 
         this.setInstance()
+        this.setHtmlInstance()
     }
 
     setInstance()
@@ -29,14 +31,27 @@ export default class Renderer
         this.instance.setPixelRatio(this.sizes.pixelRatio)
     }
 
+    setHtmlInstance()
+    {
+        this.htmlInstance = new CSS2DRenderer()
+        this.htmlInstance.setSize(this.sizes.width, this.sizes.height)
+        this.htmlInstance.domElement.style.position = 'absolute'
+        this.htmlInstance.domElement.style.top = '0px'
+        this.htmlInstance.domElement.style.left = '0px'
+        this.htmlInstance.domElement.style.pointerEvents = 'none'
+        document.body.appendChild(this.htmlInstance.domElement)
+    }
+
     resize()
     {
         this.instance.setSize(this.sizes.width, this.sizes.height)
+        this.htmlInstance.setSize(this.sizes.width, this.sizes.height)
         this.instance.setPixelRatio(this.sizes.pixelRatio)
     }
 
     update()
     {
         this.instance.render(this.scene, this.camera.instance)
+        this.htmlInstance.render(this.scene, this.camera.instance)
     }
 }

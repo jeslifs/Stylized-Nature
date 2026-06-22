@@ -16,6 +16,7 @@ body
     top: 0;
     left: 0;
     outline: none;
+    z-index: 1;
 }
 
 .credits
@@ -32,4 +33,62 @@ body
 .credits a
 {
     color: inherit;
+}
+
+.sheep-label {
+    background: transparent;
+    opacity: 0;
+    transform: translate(-50%, -100%) scale(0.8);
+    transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.sheep-name {
+    background: #000000;
+    color: #ffffff;
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.sheep-label.visible {
+    opacity: 1;
+    transform: translate(-50%, -100%) scale(1);
+    pointer-events: auto;
+}
+
+.mic-btn {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    pointer-events: auto; 
+}
+
+.mic-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+    border-color: #ffffff;
+}
+
+.mic-btn svg {
+    width: 20px;
+    height: 20px;
 }
