@@ -74,14 +74,16 @@ export default class Sheep
 
         // Mic Button
         const btn = this.labelElement.querySelector('.mic-btn')
-        btn.addEventListener('click', () => {
+        btn.addEventListener('click', () =>
+        {
             this.recordAudio(btn)
         })
 
         // Editable Name
         const nameElement = this.labelElement.querySelector('.sheep-name')
         nameElement.addEventListener('keydown', (event) => {
-            if(event.key === 'Enter') {
+            if(event.key === 'Enter')
+            {
                 event.preventDefault()
                 nameElement.blur()
             }
@@ -89,8 +91,9 @@ export default class Sheep
         nameElement.addEventListener('blur', () => {
             const newName = nameElement.innerText.trim()
 
-            if(newName === '') {
-                nameElement.innerText = 'Unnamed Sheep'
+            if(newName === '')
+            {
+                nameElement.innerText = 'Unnamed Sheep :('
             }
             // console.log('Sheep Name:', nameElement.innerText)
         })
@@ -165,11 +168,12 @@ export default class Sheep
         const randomDelay = 4000 + Math.random() * 8000
 
         this.playbackTimer = setTimeout(() => {
-            if(this.sound) {
+            if(this.sound) 
+            {
                 const soundId = this.sound.play()
                 
                 const pos = this.model.position
-                console.log(pos);
+                // console.log(pos)
                 
                 this.sound.pos(pos.x, pos.y, pos.z, soundId)
 
