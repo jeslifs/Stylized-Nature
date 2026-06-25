@@ -9,6 +9,7 @@ import Water from './Water.js'
 import Sky from './Sky.js'
 import Fog from './Fog.js'
 import Cloud from './Cloud.js'
+import Floor from './Floor.js'
 
 export default class World
 {
@@ -25,24 +26,34 @@ export default class World
             this.sky = new Sky()
             this.wind = new Wind()
             this.fox = new Fox()
+            this.floor = new Floor()
             this.flock = []
 
             for(let i = 0; i < 5; i++)
             {
-                const randomX = (Math.random() - 0.5) * 20
-                const randomZ = (Math.random() - 0.5) * 20
-                const randomPosition = new THREE.Vector3(randomX, 0, randomZ)
-            
-                const sheep = new Sheep(i + 1, randomPosition)
+                const sheepId = i + 1
+                // const sheepPosition = this.floor.getSheepPosition(sheepId)
+                const sheepPath = this.floor.getSheepPath(sheepId)
+                const sheep = new Sheep(sheepId, sheepPath)
+                
                 this.flock.push(sheep)
             }
+
             // this.sheep = new Sheep(5)
             this.grass = new Grass(this.wind)
             this.water = new Water()
             this.fog = new Fog()
             this.cloud = new Cloud()
             this.environment = new Environment()
+            
         })
+        // this.setAxes()
+    }
+
+    setAxes()
+    {
+        this.axes = new THREE.AxesHelper(5)
+        this.scene.add(this.axes)
     }
 
     update()

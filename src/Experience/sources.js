@@ -18,6 +18,12 @@ export default [
         path: 'models/Fox/glTF/Fox.gltf'
     },
     {
+        name: 'GroundModel',
+        type: 'gltfModel',
+        path: 'models/Sheep/Ground.glb'
+    },
+    
+    {
         name: 'sheepModel',
         type: 'gltfModel',
         path: 'models/Sheep/Sheep.glb'

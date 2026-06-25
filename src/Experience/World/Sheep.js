@@ -5,7 +5,7 @@ import { Howl, Howler } from 'howler'
 
 export default class Sheep
 {
-    constructor(id, sheepPosition)
+    constructor(id, sheepPath)
     {
         this.experience = new Experience()
         this.scene = this.experience.scene
@@ -15,10 +15,12 @@ export default class Sheep
         this.debug = this.experience.debug
         this.raycaster = new THREE.Raycaster()
         this.id = id
-        this.sheepPosition = sheepPosition
         this.isRecording = false
         this.audio = null
         this.playbackTimer = null
+        this.curve = sheepPath
+        this.pathProgress = Math.random() 
+        this.speed = 0.005 + (Math.random() * 0.005)
 
         // Debug
         // if(this.debug.active)
@@ -35,7 +37,7 @@ export default class Sheep
     setModel()
     {
         this.model = this.resource.scene.clone()
-        this.model.position.copy(this.sheepPosition)
+        // this.model.position.copy(this.sheepPosition)
         // this.model.rotation.y = Math.PI / 2
         this.model.scale.set(.8, .8, .8)
         this.scene.add(this.model)
@@ -49,6 +51,7 @@ export default class Sheep
         })
         this.setHTMLUI()
     }
+
 
     setHTMLUI()
     {
@@ -172,10 +175,10 @@ export default class Sheep
             {
                 const soundId = this.sound.play()
                 
-                const pos = this.model.position
-                // console.log(pos)
+                const position = this.model.position
+                // console.log(position)
                 
-                this.sound.pos(pos.x, pos.y, pos.z, soundId)
+                this.sound.pos(position.x, position.y, position.z, soundId)
 
                 this.sound.once('end', () => {
                     this.scheduleRandomPlay()
@@ -186,6 +189,21 @@ export default class Sheep
 
     update()
     {
+
+        if(this.curve)
+        {
+            const delta = this.time.delta / 1000
+ 
+            this.pathProgress += this.speed * delta
+            this.pathProgress = this.pathProgress % 1
+
+            const currentPosition = this.curve.getPointAt(this.pathProgress)
+            this.model.position.copy(currentPosition)
+
+            const tangent = this.curve.getTangentAt(this.pathProgress).normalize()
+            this.model.lookAt(currentPosition.clone().add(tangent))
+        }
+        
         if(this.sheepLabel && this.camera.instance)
         {
             // Positions in the 3D world
@@ -210,18 +228,18 @@ export default class Sheep
 
             const intersects = this.raycaster.intersectObjects(this.scene.children, true)
 
-            let isOccluded = false
+            let occluded = false
 
             for(const hit of intersects)
             {
                 if(hit.object.isMesh && hit.distance < distanceToLabel)
                 {
-                    isOccluded = true
+                    occluded = true
                     break // hidden
                 }
             }
             
-            if(isOccluded)
+            if(occluded)
             {
                 this.labelElement.classList.remove('visible')
             }
