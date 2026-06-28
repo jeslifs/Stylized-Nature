@@ -12,11 +12,11 @@ export default [
             'textures/environmentMap/nz.jpg'
         ]
     },
-    {
-        name: 'foxModel',
-        type: 'gltfModel',
-        path: 'models/Fox/glTF/Fox.gltf'
-    },
+    // {
+    //     name: 'foxModel',
+    //     type: 'gltfModel',
+    //     path: 'models/Fox/glTF/Fox.gltf'
+    // },
     {
         name: 'GroundModel',
         type: 'gltfModel',

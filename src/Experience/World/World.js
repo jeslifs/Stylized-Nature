@@ -10,6 +10,7 @@ import Sky from './Sky.js'
 import Fog from './Fog.js'
 import Cloud from './Cloud.js'
 import Floor from './Floor.js'
+import Sound from './Sound.js'
 
 export default class World
 {
@@ -44,6 +45,7 @@ export default class World
             this.water = new Water()
             this.fog = new Fog()
             this.cloud = new Cloud()
+            this.sound = new Sound()
             this.environment = new Environment()
             
         })
