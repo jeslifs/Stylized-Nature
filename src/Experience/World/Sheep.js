@@ -36,7 +36,25 @@ export default class Sheep
 
     setModel()
     {
+        let labelposition
         this.model = this.resource.scene.clone()
+
+        const whiteSheep = this.model.getObjectByName('white')
+        const blackSheep = this.model.getObjectByName('black')
+
+        const variants = []
+        variants.push(whiteSheep)
+        variants.push(blackSheep)
+
+        if(variants.length > 0)
+        {
+            variants.forEach(variant => variant.visible = false)
+
+            const randomIndex = Math.floor(Math.random() * variants.length)
+            variants[randomIndex].visible = true
+            labelposition = variants[randomIndex].position
+        }
+
         // this.model.position.copy(this.sheepPosition)
         // this.model.rotation.y = Math.PI / 2
         this.model.scale.set(.8, .8, .8)
@@ -47,13 +65,14 @@ export default class Sheep
             if(child instanceof THREE.Mesh)
             {
                 child.castShadow = true
+                child.receiveShadow = true
             }
         })
-        this.setHTMLUI()
+        this.setHTMLUI(labelposition)
     }
 
 
-    setHTMLUI()
+    setHTMLUI(position)
     {
         this.labelElement = document.createElement('div')
         this.labelElement.className = 'sheep-label'
@@ -72,7 +91,8 @@ export default class Sheep
         `
 
         this.sheepLabel = new CSS2DObject(this.labelElement)
-        this.sheepLabel.position.set(0, 1.5, 0)
+        this.sheepLabel.position.copy(position)
+        this.sheepLabel.position.y = 1.5
         this.model.add(this.sheepLabel)
 
         // Mic Button
@@ -185,7 +205,7 @@ export default class Sheep
                 }, soundId)
             }
         }, randomDelay)
-    }   
+    }
 
     update()
     {
@@ -247,6 +267,6 @@ export default class Sheep
             {
                 this.labelElement.classList.add('visible')
             }
-        }      
+        }
     }
 }

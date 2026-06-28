@@ -26,7 +26,6 @@ export default class Floor
     setFloor()
     {
         this.floor = this.model.scene
-        this.scene.add(this.floor)
 
         this.floor.traverse((child) =>
         {
@@ -34,8 +33,10 @@ export default class Floor
             {
                 // console.log(child)
                 child.castShadow = true
+                child.receiveShadow = true
             }
         })
+        this.scene.add(this.floor)
     }
 
     // getSheepPosition(id)
