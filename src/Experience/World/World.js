@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import Experience from '../Experience.js'
 import Environment from './Environment.js'
-import Fox from './Fox.js'
+// import Fox from './Fox.js'
 import Grass from './Grass.js'
 import Sheep from './Sheep.js'
 import Wind from './Wind.js'
@@ -25,7 +25,7 @@ export default class World
             // Setup
             this.sky = new Sky()
             this.wind = new Wind()
-            this.fox = new Fox()
+            // this.fox = new Fox()
             this.floor = new Floor()
             this.flock = []
 
@@ -58,8 +58,8 @@ export default class World
 
     update()
     {
-        if(this.fox)
-            this.fox.update()
+        // if(this.fox)
+        //     this.fox.update()
         if(this.grass)
             this.grass.update()
         if(this.wind)
