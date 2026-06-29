@@ -17,14 +17,14 @@ export default class Sound
             src: ['sound/background.mp3'], 
             loop: true,
             volume: 0.5, 
-            html5: true  
+            // html5: true
         })
 
         this.waterSound = new Howl({
             src: ['sound/water.mp3'], 
             loop: true,
             volume: 0.1,
-            html5: true  
+            // html5: true
         })
         
         this.sounds = [this.backgroundSound, this.waterSound]
