@@ -1,12 +1,14 @@
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import EventEmitter from './EventEmitter.js'
+import Loading from './Loading.js'
 
 export default class Resources extends EventEmitter
 {
     constructor(sources)
     {
         super()
+        this.loadingScreen = new Loading()
 
         this.sources = sources
 
@@ -69,6 +71,8 @@ export default class Resources extends EventEmitter
         this.items[source.name] = file
 
         this.loaded++
+        const percentage = (this.loaded / this.toLoad) * 100
+        this.loadingScreen.updateProgress(percentage)
 
         if(this.loaded === this.toLoad)
         {
