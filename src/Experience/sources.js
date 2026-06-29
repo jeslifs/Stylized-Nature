@@ -20,7 +20,7 @@ export default [
     {
         name: 'GroundModel',
         type: 'gltfModel',
-        path: 'models/Sheep/Ground.glb'
+        path: 'models/Ground/Ground.glb'
     },
     
     {
