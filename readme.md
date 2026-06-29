@@ -5,7 +5,7 @@
 
 🔥 **Live: [my-sheep-farm.vercel.app](https://my-sheep-farm.vercel.app/)**
 
-This is my project where i want the user to record their voices for the sheeps when they move around. WIP..
+This is my project where i want the user to record their voices for the sheeps when they move around.
 
 ## Setup
 Download [Node.js](https://nodejs.org/en/download/).
