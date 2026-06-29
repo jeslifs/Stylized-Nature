@@ -14,14 +14,14 @@ export default class Sound
     setSound()
     {
         this.backgroundSound = new Howl({
-            src: ['/sound/background.mp3'], 
+            src: ['sound/background.mp3'], 
             loop: true,
             volume: 0.5, 
             html5: true  
         })
 
         this.waterSound = new Howl({
-            src: ['/sound/water.mp3'], 
+            src: ['sound/water.mp3'], 
             loop: true,
             volume: 0.1,
             html5: true  
